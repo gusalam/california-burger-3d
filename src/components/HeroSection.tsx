@@ -127,7 +127,7 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
@@ -148,6 +148,23 @@ const HeroSection = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <div className="absolute inset-0 glow-golden-intense opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.a>
+
+              <motion.a
+                href="https://share.google/cR2bPp78xYNP194xm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative px-10 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-bold text-lg uppercase tracking-wider overflow-hidden shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10">{t("hero.orderGofood")}</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "0%" }}
+                  transition={{ duration: 0.3 }}
+                />
               </motion.a>
 
               <motion.a

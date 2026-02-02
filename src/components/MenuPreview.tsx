@@ -229,16 +229,28 @@ const MenuPreview = () => {
           <p className="text-muted-foreground mb-6 text-lg">
             {t("menu.orderCta")}
           </p>
-          <motion.a
-            href="https://wa.me/6282145997006?text=Halo,%20saya%20ingin%20memesan%20burger!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-golden text-primary-foreground rounded-full font-bold text-lg uppercase tracking-wider glow-golden hover:scale-105 transition-transform shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>{t("menu.orderButton")}</span>
-          </motion.a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.a
+              href="https://wa.me/6282145997006?text=Halo,%20saya%20ingin%20memesan%20burger!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-golden text-primary-foreground rounded-full font-bold text-lg uppercase tracking-wider glow-golden hover:scale-105 transition-transform shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>{t("menu.orderButton")}</span>
+            </motion.a>
+            <motion.a
+              href="https://share.google/cR2bPp78xYNP194xm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-bold text-lg uppercase tracking-wider hover:scale-105 transition-transform shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>{t("hero.orderGofood")}</span>
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>
