@@ -79,7 +79,7 @@ const Navbar = () => {
             <LanguageToggle />
             
             <motion.a
-              href="https://wa.me/6282145997006"
+              href="https://share.google/cR2bPp78xYNP194xm"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-2 bg-gradient-golden text-primary-foreground rounded-full font-semibold text-sm uppercase tracking-wider glow-golden hover:scale-105 transition-transform"
@@ -132,7 +132,7 @@ const Navbar = () => {
                   </motion.a>
                 ))}
                 <motion.a
-                  href="https://wa.me/6282145997006"
+                  href="https://share.google/cR2bPp78xYNP194xm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-4 bg-gradient-golden text-primary-foreground rounded-full font-semibold text-center uppercase tracking-wider glow-golden mt-4 touch-manipulation"
