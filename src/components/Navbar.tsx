@@ -111,7 +111,7 @@ const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden absolute left-0 right-0 top-full bg-background/98 backdrop-blur-lg border-b border-primary/10"
+              className="md:hidden absolute left-0 right-0 top-full bg-background border-b border-primary/10 shadow-xl z-50"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
