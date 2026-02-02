@@ -121,6 +121,9 @@ const MenuPreview = () => {
           >
             {t("menu.title1")} <span className="text-gradient-red">{t("menu.title2")}</span>
           </motion.h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Menu Burger California lengkap dengan berbagai pilihan California Burger premium, tortilla, kentang, dan lainnya.
+          </p>
           <motion.div
             className="flex items-center justify-center gap-2 text-muted-foreground"
             initial={{ opacity: 0 }}

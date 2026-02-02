@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import logo from "@/assets/logo.png";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -16,19 +16,30 @@ const Navbar = () => {
     { key: "contact", nameKey: "nav.contact", href: "#contact" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for fixed navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
+    e.stopPropagation();
+    
+    // Close menu first
     setIsOpen(false);
-  };
+    
+    // Small delay to allow menu close animation
+    setTimeout(() => {
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prev => !prev);
+  }, []);
 
   return (
     <motion.nav
@@ -43,9 +54,9 @@ const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-center gap-2 hover:scale-105 transition-transform"
+            className="flex items-center gap-2 hover:scale-105 transition-transform z-50"
           >
-            <img src={logo} alt="California Burger" className="h-10 md:h-12 w-auto" />
+            <img src={logo} alt="California Burger - Burger California Premium" className="h-10 md:h-12 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
@@ -83,11 +94,13 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-3 z-50">
             <LanguageToggle />
             <button
-              className="text-foreground p-2"
-              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground p-2 relative z-50"
+              onClick={toggleMenu}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              type="button"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -95,34 +108,45 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <motion.div
-          className={`md:hidden overflow-hidden ${isOpen ? "block" : "hidden"}`}
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-col gap-4 pt-6 pb-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.key}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-foreground/80 hover:text-primary transition-colors text-lg uppercase tracking-widest font-medium py-2 cursor-pointer"
-              >
-                {t(link.nameKey)}
-              </a>
-            ))}
-            <a
-              href="https://wa.me/6282145997006"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-gradient-golden text-primary-foreground rounded-full font-semibold text-center uppercase tracking-wider glow-golden mt-2"
-              onClick={() => setIsOpen(false)}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="md:hidden absolute left-0 right-0 top-full bg-background/98 backdrop-blur-lg border-b border-primary/10"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              {t("nav.order")}
-            </a>
-          </div>
-        </motion.div>
+              <div className="flex flex-col gap-2 px-4 py-6">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.key}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-foreground/80 hover:text-primary active:text-primary transition-colors text-lg uppercase tracking-widest font-medium py-4 px-4 rounded-lg hover:bg-primary/10 active:bg-primary/20 cursor-pointer touch-manipulation"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    {t(link.nameKey)}
+                  </motion.a>
+                ))}
+                <motion.a
+                  href="https://wa.me/6282145997006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-4 bg-gradient-golden text-primary-foreground rounded-full font-semibold text-center uppercase tracking-wider glow-golden mt-4 touch-manipulation"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("nav.order")}
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );

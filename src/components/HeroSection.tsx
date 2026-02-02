@@ -114,6 +114,8 @@ const HeroSection = () => {
               <br />
               <span className="text-foreground drop-shadow-2xl">{t("hero.title2")}</span>
             </motion.h1>
+            {/* SEO H2 - hidden visually but readable by search engines */}
+            <h2 className="sr-only">Burger California - California Burger Premium West Coast</h2>
 
             <motion.p
               className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto"
