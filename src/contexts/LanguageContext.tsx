@@ -24,6 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title2": "BURGER",
     "hero.description": "Rasakan cita rasa burger West Coast yang ultimate. Segar, juicy, dan premium dengan bahan-bahan berkualitas tinggi.",
     "hero.orderNow": "Pesan Sekarang",
+    "hero.orderGofood": "Pesan via GoFood",
     "hero.viewMenu": "Lihat Menu",
 
     // Menu
@@ -125,6 +126,7 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title2": "BURGER",
     "hero.description": "Experience the ultimate West Coast burger taste. Fresh, juicy, and premium with the finest ingredients.",
     "hero.orderNow": "Order Now",
+    "hero.orderGofood": "Order via GoFood",
     "hero.viewMenu": "View Menu",
 
     // Menu
