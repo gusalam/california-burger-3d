@@ -1,4 +1,22 @@
+# California Burger - Robots.txt
+# https://burger-california.web.app/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+
+# Crawl-delay untuk mencegah overload
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://burger-california.web.app/sitemap.xml
+
+# Search engine specific rules
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +28,8 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
 Allow: /
