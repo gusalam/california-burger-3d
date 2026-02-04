@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState, useCallback } from "react";
-import logo from "@/assets/logo.png";
+import BurningLogo from "./BurningLogo";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -50,13 +50,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Fire Animation */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
             className="flex items-center gap-2 hover:scale-105 transition-transform z-50"
           >
-            <img src={logo} alt="California Burger - Burger California Premium" className="h-10 md:h-12 w-auto" />
+            <BurningLogo size="sm" alt="California Burger - Burger California Premium" />
           </a>
 
           {/* Desktop Navigation */}
