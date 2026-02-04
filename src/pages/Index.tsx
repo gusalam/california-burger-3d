@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import BackgroundMusic from "@/components/BackgroundMusic";
+import FireScrollEffect from "@/components/FireScrollEffect";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,6 +35,7 @@ const Index = () => {
       {!isLoading && (
         <main className="overflow-hidden">
           <BackgroundMusic />
+          <FireScrollEffect />
           <Navbar />
           <HeroSection />
           <FeaturesSection />
